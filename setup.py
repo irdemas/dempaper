@@ -5,5 +5,5 @@ setup(
     description='Waveshare e-Paper Display',
     author='Waveshare',
     package_dir={'': 'lib'},
-    packages=['waveshare_epd'],
+    packages=['DEMPAPER'],
 )
