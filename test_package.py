@@ -57,7 +57,7 @@ try:
     epd.Clear(0xFF)
     image1 = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
     bmp = Image.open(os.path.join(picdir, 'twitter.png'))
-    image1.paste(bmp, (50,50))    
+    image1.paste(bmp, (0,0))    
     epd.display(epd.getbuffer(image1))
     time.sleep(2)
     
