@@ -9,4 +9,3 @@ if os.path.exists(libdir):
 
 print(libdir)
 from dconfig import config
-

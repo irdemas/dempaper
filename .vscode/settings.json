@@ -1,5 +1,7 @@
 {
-    "python.linting.enabled": true,
+    "python.linting.enabled": false,
     "python.linting.pylintEnabled": true,
-    "python.pythonPath": "C:\\Users\\Demas\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+    "python.pythonPath": "C:\\Users\\Demas\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.linting.flake8Enabled": false,
+    "python.linting.mypyEnabled": false
 }

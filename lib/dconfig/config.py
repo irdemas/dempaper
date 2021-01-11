@@ -1,2 +1,3 @@
 import epdconfig
-print("config.py success")
+
+epdconfig.tes_print("config.py success")
