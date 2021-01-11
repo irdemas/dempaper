@@ -30,7 +30,7 @@ try:
     image = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
     
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
+    font = ImageFont.truetype(os.path.join(picdir, 'Computerfont.ttc'), 24)
     draw.rectangle((0, 10, 200, 34), fill = 0)
     draw.text((8, 12), 'hello world', font = font, fill = 255)
     draw.text((8, 36), 'OK', font = font, fill = 0)
@@ -44,9 +44,9 @@ try:
     draw.rectangle((16, 130, 56, 180), fill = 0)
     draw.chord((90, 130, 150, 190), 0, 360, fill = 0)
     epd.display(epd.getbuffer(image.rotate(90)))
-    time.sleep(2)
+    time.sleep(20)
     
-    # read bmp file 
+    """ # read bmp file 
     logging.info("2.read bmp file...")
     image = Image.open(os.path.join(picdir, '1in54.bmp'))
     epd.display(epd.getbuffer(image))
@@ -77,7 +77,7 @@ try:
         epd.displayPart(epd.getbuffer(time_image))
         num = num + 1
         if(num == 20):
-            break
+            break """
     
     logging.info("Clear...")
     epd.init()
