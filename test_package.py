@@ -25,26 +25,44 @@ try:
     epd.Clear(0xFF)
     time.sleep(1)
     
+    def center_txt(img, font, tex, fill=0):
+        draw = ImageDraw.Draw(img)
+        txt_widt, txt_heig = draw.textsize(tex, font)
+        posisi = ((epd.width-txt_widt)/2, (epd.height-txt_heig)/2)
+        draw.text(posisi, tex, font=font, fill=fill)
+        return img
+        
+    def wrap_txt(img, font, tex, fill = 0, align = 'left'):
+        draw = ImageDraw.Draw(img)
+           
+        return img
+    
     # Drawing on the image
     logging.info("1.Drawing on the image...")
     image = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
-    
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype(os.path.join(picdir, 'Computerfont.ttc'), 24)
-    draw.rectangle((0, 10, 200, 34), fill = 0)
-    draw.text((8, 12), 'hello world', font = font, fill = 255)
-    draw.text((8, 36), 'OK', font = font, fill = 0)
-    draw.line((16, 60, 56, 60), fill = 0)
-    draw.line((56, 60, 56, 110), fill = 0)
-    draw.line((16, 110, 56, 110), fill = 0)
-    draw.line((16, 110, 16, 60), fill = 0)
-    draw.line((16, 60, 56, 110), fill = 0)
-    draw.line((56, 60, 16, 110), fill = 0)
-    draw.arc((90, 60, 150, 120), 0, 360, fill = 0)
-    draw.rectangle((16, 130, 56, 180), fill = 0)
-    draw.chord((90, 130, 150, 190), 0, 360, fill = 0)
-    epd.display(epd.getbuffer(image.rotate(90)))
-    time.sleep(20)
+    font = ImageFont.truetype(os.path.join(picdir, 'Computerfont.ttf'), 24)
+    #draw.rectangle((0, 0, 199, 199), fill = 255, outline = 0)
+    pesan = 'Aplikasi pesan \ninstan \nWhatsApp punya kebijakan baru. Aturan yang akan berlaku efektif pada 8 Februari 2021 tersebut "memaksa" pengguna setuju data-data mereka diteruskan WhatsApp ke Facebook sebagai perusahaan induk. Menanggapi hal ini, Menteri Komunikasi dan Informatika Johnny Plate mengimbau masyarakat agar semakin berhati-hati dalam menggunakan media sosial, dengan selalu membaca kebijakan privasi sebelum menggunakan layanan dan memberi persetujuan data pribadi.'
+    draw.text((0,0), pesan, font = font, fill = 0, spacing = 5)
+    #txt_x, txt_y = draw.textsize(pesan, font)
+    #pjg = "x:" + str(txt_x) + " y:" + str(txt_y)
+    #center_txt(image, font, pjg)
+    
+    j = 0
+    k = ''
+    for i in pesan:            
+        if i == '\n':
+            txt_widt, txt_heig = draw.textsize(k, font)
+            logging.info(k + "pjg pix =" + str(txt_widt) + "pjg piy:" + str(txt_heig
+            ))
+        j += 1
+        k += i 
+    
+    epd.display(epd.getbuffer(image.rotate(0)))
+    time.sleep(10)
+    
+    
     
     """ # read bmp file 
     logging.info("2.read bmp file...")
@@ -55,7 +73,7 @@ try:
     # read png file on window
     logging.info("3.read bmp file on window...")
     epd.Clear(0xFF)
-    image1 = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
+    image1 = Image.new('L', (epd.width, epd.height), 255)  # 255: clear the frame
     bmp = Image.open(os.path.join(picdir, 'twitter.png'))
     image1.paste(bmp, (0,0))    
     epd.display(epd.getbuffer(image1))
@@ -79,9 +97,9 @@ try:
         if(num == 20):
             break """
     
-    logging.info("Clear...")
-    epd.init()
-    epd.Clear(0xFF)
+    #logging.info("Clear...")
+    #epd.init()
+    #epd.Clear(0xFF)
     
     logging.info("Goto Sleep...")
     epd.sleep()
