@@ -23,15 +23,24 @@ def center_txt(img, font, tex, fill=0):
 
 def wrap_txt(img, font, tex, fill=0, align = 'center'):
     draw = ImageDraw.Draw(img)  
-    pjg_wrp_tex = 0
+    
+    """pjg_wrp_tex = 0
     i = 0
     l = 0
+    c = []
     while l < len(tex):
         while i < epd_width:
             pjg_wrp_tex += 1
-            i = draw.textsize(tex[l:l+pjg_wrp_tex], font)[0]
+            i = draw.textsize(tex[l:l+pjg_wrp_tex], font = font)[0]
         l += pjg_wrp_tex
-        print(l)
+        print(l, i, tex[l:l+pjg_wrp_tex])"""
+    
+    c = []
+    j = 0
+    for i in tex:
+        c.append(draw.textsize(i, font = font)[0])
+    print(c)
+
     novo = textwrap.wrap(tex, width=20)
     marg = offs = 0
     for line in novo:
